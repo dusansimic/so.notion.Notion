@@ -2,7 +2,7 @@
 Name=Notion
 Comment=Notion Desktop
 GenericName=Notion Client for Linux
-Exec=notion %U
+Exec=so.notion.Notion %U
 Icon=so.notion.Notion
 Type=Application
 StartupNotify=true

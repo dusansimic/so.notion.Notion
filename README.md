@@ -1,19 +1,11 @@
 # Notion Flatpak
 
-Resources to build Notion as a Flatpak. Please run the provided Makefile for
-instructions.
+This Flatpak can be build for local use with [fp-build](https://github.com/lionirdeadman/fp-build)
+script.
 
-# Requirements
+Icons are stored in this repo since I'm lazy to add a module for asar and unpack it to extract the
+icons during build. You'll need Git LFS to clone those icons too.
 
-* `curl`
-
-Needs to be on `$PATH`.
-
-When generating `package.json`, `package-lock.json` and `generated-sources.json` for a new version of Notion:
-
-* `7z`
-* `npm`
-* `npx`
-* `python3`
-
-need to be on `$PATH`, as well.
+Work is based on [Alexanders][https://github.com/outergod/so.notion.Notion] manifest and instead of
+repackaging Notion from Windows builds, I use build from [notion-repackaged](https://github.com/notion-enhancer/notion-repackaged)
+project. They are a bit out of date tho.
