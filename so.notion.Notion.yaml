@@ -5,7 +5,9 @@ branch: stable
 sdk: org.freedesktop.Sdk
 base: org.electronjs.Electron2.BaseApp
 base-version: "23.08"
-command: so.notion.Notion
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.node18
+command: notion-app
 
 finish-args:
   - --device=dri
@@ -19,33 +21,38 @@ finish-args:
   - --filesystem=xdg-videos:ro
   - --filesystem=xdg-download
 
+build-options:
+  append-path: /usr/lib/sdk/node18/bin
+
 modules:
   - name: notion
     buildsystem: simple
-    build-dir: app
     build-commands:
-      - install -d ${FLATPAK_DEST}/${FLATPAK_ID}
-      - cp -r * ${FLATPAK_DEST}/${FLATPAK_ID}/
+      - bash tools/install --prefix "${FLATPAK_DEST}" pkg
     sources:
       - type: archive
-        url: https://github.com/notion-enhancer/notion-repackaged/releases/download/v2.0.18-1/notion-app-2.0.18-1.zip
-        sha256: 1bc6e6c6c6bb412a4419d4b8f68f0b61d10b8ae83255dccb40665a7e7ae8c777
-        strip-components: 0
+        url: https://github.com/dusansimic/notion-repackaged/releases/download/v3.1.1-2/notion-app-electron.tar.xz
+        sha256: b357be3a5b1552588dff52b2b46182e472e700d692b07abd16c4bc91530fc377
   - name: extra
     buildsystem: simple
     build-commands:
+      - install -Dm755 notion.sh ${FLATPAK_DEST}/bin/notion-app
       - install -Dm644 ${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/appdata/${FLATPAK_ID}.appdata.xml
-      - install -Dm644 ${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
-      - for size in 16 32 48 64 128 256; do install -Dm644 ${size}.png ${FLATPAK_DEST}/share/icons/hicolor/${size}x${size}/apps/${FLATPAK_ID}.png; done
-      - install -Dm755 notion.sh ${FLATPAK_DEST}/bin/${FLATPAK_ID}
     sources:
       - type: file
-        path: so.notion.Notion.desktop
-      - type: file
         path: so.notion.Notion.appdata.xml
-      - type: dir
-        path: icons
+        sha256: bb762752d6bbf00d1671fa1a0be080f49e70e2f634f441f3cb3fc82423c6a45b
       - type: script
         dest-filename: notion.sh
         commands:
-          - exec env TMPDIR=$XDG_CACHE_HOME zypak-wrapper /app/${FLATPAK_ID}/notion-app "$@"
+          - XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
+          - PREFIX="${FLATPAK_DEST}"
+          - ELECTRON="$PREFIX${FLATPAK_DEST}/lib/notion-app/electron/node_modules/.bin/electron"
+          -
+          -  # Allow users to override command-line options
+          - if [[ -f $XDG_CONFIG_HOME/notion-flags.conf ]]; then
+          - NOTION_USER_FLAGS="$(grep -v '^#' $XDG_CONFIG_HOME/notion-flags.conf)"
+          - fi
+          -
+          -  # Launch
+          - exec env TMPDIR=$XDG_CACHE_HOME zypak-wrapper $PREFIX$ELECTRON /usr/lib/notion-app $NOTION_USER_FLAGS "$@"

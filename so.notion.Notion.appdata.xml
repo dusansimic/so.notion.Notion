@@ -24,9 +24,9 @@
     <category>Utility</category>
   </categories>
   <url type="homepage">https://www.notion.so/product</url>
-  <launchable type="desktop-id">so.notion.Notion.desktop</launchable>
+  <launchable type="desktop-id">notion-app.desktop</launchable>
   <provides>
-    <binary>so.notion.Notion</binary>
+    <binary>notion-app</binary>
   </provides>
   <releases>
     <release version="2.0.18" date="2021-12-31" />

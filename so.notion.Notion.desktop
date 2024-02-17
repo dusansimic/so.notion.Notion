@@ -1,11 +1,12 @@
 [Desktop Entry]
+Version=1.0
+Type=Application
 Name=Notion
-Comment=Notion Desktop
-GenericName=Notion Client for Linux
+GenericName=Online Document Editor
+Comment=Your connected workspace for wiki, docs & projects
 Exec=so.notion.Notion %U
 Icon=so.notion.Notion
-Type=Application
 StartupNotify=true
-StartupWMClass=notion
-Categories=GNOME;GTK;Office;Network;Utility;Calendar;ContactManagement;ProjectManagement;TextEditor;
+StartupWMClass=so.notion.Notion
+Categories=Office;
 MimeType=x-scheme-handler/notion;
