@@ -47,7 +47,7 @@ modules:
         commands:
           - XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
           - PREFIX="${FLATPAK_DEST}"
-          - ELECTRON="$PREFIX${FLATPAK_DEST}/lib/notion-app/electron/node_modules/.bin/electron"
+          - ELECTRON="$PREFIX${FLATPAK_DEST}/lib/notion-app/electron/node_modules/electron/dist/electron"
           -
           -  # Allow users to override command-line options
           - if [[ -f $XDG_CONFIG_HOME/notion-flags.conf ]]; then
