@@ -41,7 +41,7 @@ modules:
     sources:
       - type: file
         path: so.notion.Notion.appdata.xml
-        sha256: bb762752d6bbf00d1671fa1a0be080f49e70e2f634f441f3cb3fc82423c6a45b
+        sha256: 230accd897c17f650d5b8abd16ec9790091397069df8a1ba88c30ce4d5c25e02
       - type: script
         dest-filename: notion.sh
         commands:
