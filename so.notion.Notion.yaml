@@ -46,8 +46,8 @@ modules:
         dest-filename: notion.sh
         commands:
           - XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
-          - PREFIX="${FLATPAK_DEST}"
-          - ELECTRON="$PREFIX${FLATPAK_DEST}/lib/notion-app/electron/node_modules/electron/dist/electron"
+          - PREFIX="/app"
+          - ELECTRON="$PREFIX/lib/notion-app/electron/node_modules/electron/dist/electron"
           -
           -  # Allow users to override command-line options
           - if [[ -f $XDG_CONFIG_HOME/notion-flags.conf ]]; then
@@ -55,4 +55,4 @@ modules:
           - fi
           -
           -  # Launch
-          - exec env TMPDIR=$XDG_CACHE_HOME zypak-wrapper $PREFIX$ELECTRON /usr/lib/notion-app $NOTION_USER_FLAGS "$@"
+          - exec env TMPDIR=$XDG_CACHE_HOME zypak-wrapper $ELECTRON $PREFIX/lib/notion-app $NOTION_USER_FLAGS "$@"
