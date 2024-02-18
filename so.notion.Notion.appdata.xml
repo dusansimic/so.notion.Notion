@@ -26,9 +26,11 @@
   <url type="homepage">https://www.notion.so/product</url>
   <launchable type="desktop-id">notion-app.desktop</launchable>
   <provides>
+    <id>notion-app.desktop</id>
     <binary>notion-app</binary>
   </provides>
   <releases>
+    <release version="3.1.1" date="2024-02-18" />
     <release version="2.0.18" date="2021-12-31" />
     <release version="2.0.11" date="2020-12-06" />
   </releases>
