@@ -26,7 +26,7 @@
   <url type="homepage">https://www.notion.so/product</url>
   <launchable type="desktop-id">notion-app.desktop</launchable>
   <provides>
-    <id>notion-app.desktop</id>
+    <id>so.notion.Notion.desktop</id>
     <binary>notion-app</binary>
   </provides>
   <releases>

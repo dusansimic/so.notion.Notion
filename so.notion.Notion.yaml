@@ -8,6 +8,8 @@ base-version: "23.08"
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node18
 command: notion-app
+rename-icon: notion-app
+rename-desktop-file: notion-app.desktop
 
 finish-args:
   - --device=dri
@@ -41,7 +43,7 @@ modules:
     sources:
       - type: file
         path: so.notion.Notion.appdata.xml
-        sha256: 230accd897c17f650d5b8abd16ec9790091397069df8a1ba88c30ce4d5c25e02
+        sha256: a5ee00ff77e017c61ff16f3cedde9ee923c4e126cc1eff7f77c413224ca5aef0
       - type: script
         dest-filename: notion.sh
         commands:
